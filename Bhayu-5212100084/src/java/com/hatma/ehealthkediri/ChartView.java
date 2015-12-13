@@ -13,21 +13,21 @@ import org.primefaces.model.chart.ChartSeries;
 @ManagedBean
 public class ChartView implements Serializable {
  
-    private BarChartModel barModel;
-     
+    private HorizontalBarChartModel horizontalBarModel;
+ 
     @PostConstruct
     public void init() {
         createBarModels();
     }
  
-    public BarChartModel getBarModel() {
-        return barModel;
-    }
      
+    public HorizontalBarChartModel getHorizontalBarModel() {
+        return horizontalBarModel;
+    }
    
  
-    private BarChartModel initBarModel() {
-        BarChartModel model = new BarChartModel();
+    private HorizontalBarChartModel createHorizontalBarModel() {
+        horizontalBarModel = new HorizontalBarChartModel();
  
         ChartSeries bayi = new ChartSeries();
         bayi.setLabel("bayi");
@@ -43,7 +43,7 @@ public class ChartView implements Serializable {
         bayi.set("panu", 69);
  
         ChartSeries balita = new ChartSeries();
-        balita.setLabel("bayi");
+        balita.setLabel("balita");
         balita.set("pilek", 64);
         balita.set("flu", 61);
         balita.set("batuk", 53);
@@ -108,36 +108,31 @@ public class ChartView implements Serializable {
         tua.set("panu", 13);
         
         
-        model.addSeries(bayi);
-        model.addSeries(balita);
-        model.addSeries(anak);
-        model.addSeries(rema);
-        model.addSeries(dws);
-        model.addSeries(tua);
+        horizontalBarModel.addSeries(bayi);
+        horizontalBarModel.addSeries(balita);
+        horizontalBarModel.addSeries(anak);
+        horizontalBarModel.addSeries(rema);
+        horizontalBarModel.addSeries(dws);
+        horizontalBarModel.addSeries(tua);
          
-        return model;
+        horizontalBarModel.setTitle("10 Penderita Berdasarkan Usia");
+        horizontalBarModel.setLegendPosition("e");
+        horizontalBarModel.setStacked(true);
+         
+        Axis xAxis = horizontalBarModel.getAxis(AxisType.X);
+        xAxis.setLabel("Usia");
+        xAxis.setMin(0);
+        xAxis.setMax(500);
+         
+        Axis yAxis = horizontalBarModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Penyakit");
+         
+        return horizontalBarModel;
     }
      
     private void createBarModels() {
-        createBarModel();
-        
+        createHorizontalBarModel();
     }
      
-    private void createBarModel() {
-        barModel = initBarModel();
-         
-        barModel.setTitle("10 Penderita Berdasarkan Usia");
-        barModel.setLegendPosition("ne");
-         
-        Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Penyakit");
-         
-        Axis yAxis = barModel.getAxis(AxisType.Y);
-        yAxis.setLabel("Usia");
-        yAxis.setMin(0);
-        yAxis.setMax(300);
-    }
-     
-    
- 
+  
 }
