@@ -1,0 +1,9 @@
+1. buka netbeans, buat project baru (java web) + javaserver faces + primefaces 5.3
+
+2. coba run, pastikan bisa jalan lancar
+
+3. copy semua isi folder "web" ke dalam folder WEB Pages di Netbeans anda
+
+4. copy semua isi folder "java" ke dalam folder SOURCE Packages di Netbeans anda
+
+5. klik kanan project anda, CLEAN & BUILD (kalo servermu Glassfish, sebelum clean&build harus di STOP dulu glassfishnya), lalu coba RUN

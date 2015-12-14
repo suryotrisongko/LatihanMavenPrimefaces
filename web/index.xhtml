@@ -14,11 +14,6 @@
         </style>
     </h:head>
     <h:body>
-        <a href="faces/pr1.xhtml">PR 1 = 10 Penderita Berdasarkan Usia. PIC = 	5213100129	5213100140	5212100084</a> <br/>
-        <a href="faces/pr2.xhtml">PR 2 = 10 Penderita Berdasarkan Jenis Kelamin. PIC = 	5213100193	5213100154	5213100100</a> <br/>
-        <a href="faces/pr3.xhtml">PR 3 = History Total Pasien Selama 1 Tahun. PIC = 	5213100180	5213100179 	5213100139	5213100117</a> <br/>
-        <a href="faces/pr4.xhtml">PR 4 = Peta gMap, Kalau di Klik Area Kecamatan Muncul Informasi. PIC = 	5212100001	5213100039	5213100101	5213100028</a> <br/>
-        
         <h:form>
             <p:growl id="growl" showDetail="true" />
 
@@ -29,6 +24,19 @@
                 <br/>
                 <i>Fitur Utama MAPS</i> = Marker warna lokasi puskesmas/RS menunjukkan jumlah penyakit, Info detail ketika di klik, Area kecamatan dengan warna menunjukkan jumlah penyakit,
             </div>
+            <br/>
+            <p:separator />
+            <br/><br/>
+            
+            <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:300px"/>
+            
+            <br/>
+            <p:separator />
+            <br/><br/>
+            <br/><br/>
+            
+            <p:chart type="line" model="#{historytotalpasien.lineModel1}" style="height:300px;"/>
+            
             <br/>
             <p:separator />
             <br/><br/>
@@ -52,7 +60,7 @@
                 <p:commandButton value="View" id="withIcon1" actionListener="#{penyakitView.refreshChart1}" update="chart1" icon="ui-icon-disk" />
             </h:panelGrid>
 
-           <p:chart id="chart1" type="bar" model="#{penyakitView.horizontalBarModel}" style="height:500px" responsive="true">            
+            <p:chart id="chart1" type="bar" model="#{penyakitView.horizontalBarModel}" style="height:500px" responsive="true">            
                 <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
             </p:chart>
             <br/>
@@ -135,8 +143,6 @@
 
 
         </h:form>
-        
-        
     </h:body>
 
 </html>
