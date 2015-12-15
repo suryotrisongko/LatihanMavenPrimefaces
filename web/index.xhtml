@@ -28,7 +28,7 @@
             <p:separator />
             <br/><br/>
             
-            <p:chart type="bar" model="#{chart.horizontalBarModel}" style="height:600px">
+            <p:chart type="bar" model="#{chart.barModel}" style="height:600px">
                 <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
             </p:chart>
             
@@ -36,7 +36,7 @@
             <p:separator />
             <br/><br/>
             
-            <p:chart type="bar" model="#{chartView.horizontalBarModel}" style="height:600px">
+            <p:chart type="bar" model="#{chartView.barModel}" style="height:600px">
                 <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
             </p:chart>
             
