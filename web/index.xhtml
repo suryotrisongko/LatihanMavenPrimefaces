@@ -28,25 +28,97 @@
             <p:separator />
             <br/><br/>
             
-            <p:chart type="bar" model="#{chart.barModel}" style="height:600px">
+            <!-- diedit oleh bintang setyawan -->
+            <h:panelGrid columns="8" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="bulan" value="" />
+                <p:selectOneMenu id="bulan1" value="#{penyakitView.bulan}" style="width:100px">
+                    <f:selectItem itemLabel="Oktober" itemValue="Oktober" />
+                    <f:selectItem itemLabel="November" itemValue="November" />
+                    <f:selectItem itemLabel="Desember" itemValue="Desember" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="tahun" value="" />
+                <p:selectOneMenu id="tahun1" value="#{penyakitView.tahun}" style="width:50px">
+                    <f:selectItem itemLabel="2015" itemValue="2015" />
+                    <f:selectItem itemLabel="2014" itemValue="2014" />
+                    <f:selectItem itemLabel="2013" itemValue="2013" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="puskesmas" value="" />
+                <p:selectOneMenu id="puskesmas1" value="#{penyakitView.puskesmas}" style="width:150px">
+                    <f:selectItem itemLabel="Semua Puskesmas" itemValue="Semua Puskesmas" />
+                    <f:selectItem itemLabel="Sukorame" itemValue="Sukorame" />
+                    <f:selectItem itemLabel="Ngampel" itemValue="Ngampel" />
+                </p:selectOneMenu>
+                <p:commandButton value="View" id="withIcon7" actionListener="#{penyakitView.refreshChart3}" update="chart3" icon="ui-icon-disk" />
+            </h:panelGrid>
+            
+            <p:chart type="bar" id="chart3" model="#{chart.barModel}" style="height:600px">
                 <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
             </p:chart>
             
+           
             <br/>
             <p:separator />
             <br/><br/>
+
+            <h:panelGrid columns="8" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="bulan" value="" />
+                <p:selectOneMenu id="bulan2" value="#{chartView.bulan}" style="width:100px">
+                    <f:selectItem itemLabel="Oktober" itemValue="Oktober" />
+                    <f:selectItem itemLabel="November" itemValue="November" />
+                    <f:selectItem itemLabel="Desember" itemValue="Desember" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="tahun" value="" />
+                <p:selectOneMenu id="tahun2" value="#{chartView.tahun}" style="width:50px">
+                    <f:selectItem itemLabel="2015" itemValue="2015" />
+                    <f:selectItem itemLabel="2014" itemValue="2014" />
+                    <f:selectItem itemLabel="2013" itemValue="2013" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="puskesmas" value="" />
+                <p:selectOneMenu id="puskesmas2" value="#{chartView.puskesmas}" style="width:150px">
+                    <f:selectItem itemLabel="Semua Puskesmas" itemValue="Semua Puskesmas" />
+                    <f:selectItem itemLabel="Sukorame" itemValue="Sukorame" />
+                    <f:selectItem itemLabel="Ngampel" itemValue="Ngampel" />
+                </p:selectOneMenu>
+                <p:commandButton value="View" id="withIcon9" actionListener="#{chartView.refreshBarChart2}" update="chart6" icon="ui-icon-disk" />
+            </h:panelGrid>
             
-            <p:chart type="bar" model="#{chartView.barModel}" style="height:600px">
+            <p:chart type="bar" id="chart6" model="#{chartView.barModel}" style="height:600px">
                 <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
             </p:chart>
-            
+            <!-- diedit oleh bintang setyawan sampai sini -->
             <br/>
             <p:separator />
             <br/><br/>
             <br/><br/>
             
-            <p:chart type="line" model="#{historytotalpasien.lineModel1}" style="height:300px;"/>
+            <!-- Diedit oleh oryza -->
+            <h:panelGrid columns="8" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="puskesmasLine" value="" />
+                <p:selectOneMenu id="puskesmasLine" value="#{historytotalpasien.puskesmas}" style="width:160px">
+                    <f:selectItem itemLabel="Semua Puskesmas" itemValue="Semua Puskesmas" />
+                    <f:selectItem itemLabel="Sukorame" itemValue="Sukorame" />
+                    <f:selectItem itemLabel="Ngampel" itemValue="Ngampel" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="tahunLine" value="" />
+                <p:selectOneMenu id="tahunLine" value="#{historytotalpasien.tahun}" style="width:50px">
+                    <f:selectItem itemLabel="2015" itemValue="2015" />
+                    <f:selectItem itemLabel="2014" itemValue="2014" />
+                    <f:selectItem itemLabel="2013" itemValue="2013" />
+                </p:selectOneMenu>
+
+                <p:commandButton value="View" id="withIcon4" actionListener="#{historytotalpasien.refreshLineChart1}" update="line1"/>
+            </h:panelGrid>
             
+            <p:chart id="line1" type="line" model="#{historytotalpasien.lineModel1}" style="height:300px;">
+                <p:ajax event="itemSelect" listener="#{historytotalpasien.itemLineSelect}" update="growl" />
+            </p:chart>
+            <!-- Diedit oleh oryza sampai sini-->
+
             <br/>
             <p:separator />
             <br/><br/>
@@ -67,7 +139,7 @@
                     <f:selectItem itemLabel="2013" itemValue="2013" />
                 </p:selectOneMenu>
 
-                <p:commandButton value="View" id="withIcon1" actionListener="#{penyakitView.refreshChart1}" update="chart1" icon="ui-icon-disk" />
+                <p:commandButton value="View" id="withIcon1" actionListener="#{penyakitView.refreshChart4}" update="chart1" icon="ui-icon-disk" />
             </h:panelGrid>
 
             <p:chart id="chart1" type="bar" model="#{penyakitView.horizontalBarModel}" style="height:500px" responsive="true">            

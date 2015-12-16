@@ -62,6 +62,10 @@ public class PenyakitView implements Serializable {
     public void refreshChart2() {
         createBarModel();
     }
+    
+    public void refreshChart3() {
+        createBarModel3();
+    }
 
     @PostConstruct
     public void init() {
@@ -133,6 +137,109 @@ public class PenyakitView implements Serializable {
         yAxis.setLabel("Jenis Penyakit");
     }
 
+    private void createBarModel3() {
+        barModel = new BarChartModel();
+
+        horizontalBarModel.setTitle("10 Penderita Berdasarkan " + puskesmas + " " + bulan + " " + tahun);
+        horizontalBarModel.setAnimate(true);
+        horizontalBarModel.setLegendPosition("e");
+        horizontalBarModel.setStacked(true);
+
+        sukorame = new ChartSeries();
+        sukorame.setLabel("Sukorame");
+        sukorame.set("batuk", (int) (Math.random() * 65));
+        sukorame.set("pilek", (int) (Math.random() * 65));
+        sukorame.set("flu", (int) (Math.random() * 65));
+        sukorame.set("panas", (int) (Math.random() * 65));
+        sukorame.set("panu", (int) (Math.random() * 65));
+        sukorame.set("demam berdarah", (int) (Math.random() * 65));
+        sukorame.set("malaria", (int) (Math.random() * 65));
+        sukorame.set("sakit gigi", (int) (Math.random() * 65));
+        sukorame.set("cangkrang", (int) (Math.random() * 65));
+        sukorame.set("ambeien", (int) (Math.random() * 65));
+
+        mrican = new ChartSeries();
+        mrican.setLabel("Mrican");
+        mrican.set("batuk", (int) (Math.random() * 65));
+        mrican.set("pilek", (int) (Math.random() * 65));
+        mrican.set("flu", (int) (Math.random() * 65));
+        mrican.set("panas", (int) (Math.random() * 65));
+        mrican.set("panu", (int) (Math.random() * 65));
+        mrican.set("demam berdarah", (int) (Math.random() * 65));
+        mrican.set("malaria", (int) (Math.random() * 65));
+        mrican.set("sakit gigi", (int) (Math.random() * 65));
+        mrican.set("cangkrang", (int) (Math.random() * 65));
+        mrican.set("ambeien", (int) (Math.random() * 65));
+
+        ngampel = new ChartSeries();
+        ngampel.setLabel("Ngampel");
+        ngampel.set("batuk", (int) (Math.random() * 65));
+        ngampel.set("pilek", (int) (Math.random() * 65));
+        ngampel.set("flu", (int) (Math.random() * 65));
+        ngampel.set("panas", (int) (Math.random() * 65));
+        ngampel.set("panu", (int) (Math.random() * 65));
+        ngampel.set("demam berdarah", (int) (Math.random() * 65));
+        ngampel.set("malaria", (int) (Math.random() * 65));
+        ngampel.set("sakit gigi", (int) (Math.random() * 65));
+        ngampel.set("cangkrang", (int) (Math.random() * 65));
+        ngampel.set("ambeien", (int) (Math.random() * 65));
+        
+        januari = new ChartSeries();
+        januari.setLabel("Januari 2015");
+        januari.set("batuk", (int) (Math.random() * 200));
+        januari.set("pilek", (int) (Math.random() * 200));
+        januari.set("flu", (int) (Math.random() * 200));
+        januari.set("panas", (int) (Math.random() * 200));
+        januari.set("panu", (int) (Math.random() * 200));
+        januari.set("demam berdarah", (int) (Math.random() * 200));
+        januari.set("malaria", (int) (Math.random() * 200));
+        januari.set("sakit gigi", (int) (Math.random() * 200));
+        januari.set("cangkrang", (int) (Math.random() * 200));
+        januari.set("ambeien", (int) (Math.random() * 200));
+
+        februari = new ChartSeries();
+        februari.setLabel("Februari 2015");
+        februari.set("batuk", (int) (Math.random() * 200));
+        februari.set("pilek", (int) (Math.random() * 200));
+        februari.set("flu", (int) (Math.random() * 200));
+        februari.set("panas", (int) (Math.random() * 200));
+        februari.set("panu", (int) (Math.random() * 200));
+        februari.set("demam berdarah", (int) (Math.random() * 200));
+        februari.set("malaria", (int) (Math.random() * 200));
+        februari.set("sakit gigi", (int) (Math.random() * 200));
+        februari.set("cangkrang", (int) (Math.random() * 200));
+        februari.set("ambeien", (int) (Math.random() * 200));
+
+        maret = new ChartSeries();
+        maret.setLabel("Maret 2015");
+        maret.set("batuk", (int) (Math.random() * 200));
+        maret.set("pilek", (int) (Math.random() * 200));
+        maret.set("flu", (int) (Math.random() * 200));
+        maret.set("panas", (int) (Math.random() * 200));
+        maret.set("panu", (int) (Math.random() * 200));
+        maret.set("demam berdarah", (int) (Math.random() * 200));
+        maret.set("malaria", (int) (Math.random() * 200));
+        maret.set("sakit gigi", (int) (Math.random() * 200));
+        maret.set("cangkrang", (int) (Math.random() * 200));
+        maret.set("ambeien", (int) (Math.random() * 200));
+
+        barModel.addSeries(januari);
+        barModel.addSeries(februari);
+        barModel.addSeries(maret);
+
+        barModel.addSeries(sukorame);
+        barModel.addSeries(mrican);
+        barModel.addSeries(ngampel);
+
+        Axis xAxis = barModel.getAxis(AxisType.X);
+        xAxis.setLabel("Jumlah");
+        xAxis.setMin(0);
+        xAxis.setMax(200);
+
+        Axis yAxis = barModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Penyakit");
+    }
+    
     private void createBarModel() {
         barModel = new BarChartModel();
 
