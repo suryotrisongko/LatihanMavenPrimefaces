@@ -10,5 +10,8 @@
         <property name="URL" value="jdbc:mysql://localhost:3306/latedit?zeroDateTimeBehavior=convertToNull"/>
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
     </jdbc-connection-pool>
-    <jdbc-resource enabled="true" jndi-name="java:app/datasourcehatma" object-type="user" pool-name="mysql_latedit_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/datasourcejockey" object-type="user" pool-name="mysql_latedit_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/latedit" object-type="user" pool-name="mysql_latedit_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/datasourcejockey" object-type="user" pool-name="mysql_latedit_rootPool"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/dennysource" object-type="user" pool-name="mysql_latedit_rootPool"/>
 </resources>

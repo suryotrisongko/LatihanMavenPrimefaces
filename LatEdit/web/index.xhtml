@@ -31,26 +31,26 @@
             <!-- diedit oleh bintang setyawan -->
             <h:panelGrid columns="8" style="margin-bottom:10px" cellpadding="5">
                 <p:outputLabel for="bulan" value="" />
-                <p:selectOneMenu id="bulan1" value="#{penyakitView.bulan}" style="width:100px">
+                <p:selectOneMenu id="bulan1" value="#{chart.bulan_id}" style="width:100px">
                     <f:selectItem itemLabel="Oktober" itemValue="Oktober" />
                     <f:selectItem itemLabel="November" itemValue="November" />
                     <f:selectItem itemLabel="Desember" itemValue="Desember" />
                 </p:selectOneMenu>
 
                 <p:outputLabel for="tahun" value="" />
-                <p:selectOneMenu id="tahun1" value="#{penyakitView.tahun}" style="width:50px">
+                <p:selectOneMenu id="tahun1" value="#{chart.tahun_id}" style="width:50px">
                     <f:selectItem itemLabel="2015" itemValue="2015" />
                     <f:selectItem itemLabel="2014" itemValue="2014" />
                     <f:selectItem itemLabel="2013" itemValue="2013" />
                 </p:selectOneMenu>
                 
                 <p:outputLabel for="puskesmas" value="" />
-                <p:selectOneMenu id="puskesmas1" value="#{penyakitView.puskesmas}" style="width:150px">
+                <p:selectOneMenu id="puskesmas1" value="#{chart.puskesmas_id}" style="width:150px">
                     <f:selectItem itemLabel="Semua Puskesmas" itemValue="Semua Puskesmas" />
                     <f:selectItem itemLabel="Sukorame" itemValue="Sukorame" />
                     <f:selectItem itemLabel="Ngampel" itemValue="Ngampel" />
                 </p:selectOneMenu>
-                <p:commandButton value="View" id="withIcon7" actionListener="#{penyakitView.refreshChart3}" update="chart3" icon="ui-icon-disk" />
+                <p:commandButton value="View" id="withIcon7" actionListener="#{chart.refreshChart3}" update="chart3" icon="ui-icon-disk" />
             </h:panelGrid>
             
             <p:chart type="bar" id="chart3" model="#{chart.barModel}" style="height:600px">

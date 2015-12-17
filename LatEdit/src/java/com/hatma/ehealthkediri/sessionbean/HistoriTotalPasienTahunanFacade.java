@@ -44,7 +44,7 @@ public class HistoriTotalPasienTahunanFacade extends AbstractFacade<HistoriTotal
         CriteriaQuery<HistoriTotalPasienTahunan> cq = cb.createQuery(HistoriTotalPasienTahunan.class);    // ini output mau apa?
         Root<HistoriTotalPasienTahunan> history = cq.from(HistoriTotalPasienTahunan.class);
 
-        //cq.select(pet.get(Pet_.name));    // select salah satu kolom saja
+        //cq.select(tabel.get(tabel_.namakolom));    // select salah satu kolom saja
         cq.select(history);     // select * (semua kolom)
         //cq.where(cb.equal(history.get(HistoriTotalPasienTahunan_.tahunId), tahun_id)); // WHERE 1 kondisi
 

@@ -43,7 +43,7 @@ public class HistoriTotalPasienTahunan implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "tahun_id")
-    private int tahunId;
+    public int tahunId;
     @Basic(optional = false)
     @NotNull
     @Column(name = "puskesmas_id")

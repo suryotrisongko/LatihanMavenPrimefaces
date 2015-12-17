@@ -1,9 +1,14 @@
 package com.hatma.ehealthkediri;
- 
+
+import com.hatma.ehealthkediri.entity.HistoriTotalPasienTahunan;
+import com.hatma.ehealthkediri.entity.PenyakitJk;
+import com.hatma.ehealthkediri.sessionbean.PenyakitJkFacade;
 import javax.annotation.PostConstruct;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -17,22 +22,67 @@ import org.primefaces.model.chart.ChartSeries;
  
 @ManagedBean
 public class Chart implements Serializable {
- 
+    
+ @EJB
+    private PenyakitJkFacade penyakitJkFacade;
     private BarChartModel barModel;
     private HorizontalBarChartModel horizontalBarModel;
     private ChartSeries laki, prm;
-    private String jeniskelamin = "Perempuan";
- 
-    public String getjeniskelamin() {
-        return jeniskelamin;
+    private int tahun_id = 2015;
+    private int bulan_id = 1;
+    private int puskesmas_id = 1;
+
+    /*public ChartSeries getLaki() {
+        return laki;
     }
 
-    public void setjeniskelamin(String jeniskelamin) {
-        this.jeniskelamin = jeniskelamin;
+    public void setLaki(ChartSeries laki) {
+        this.laki = laki;
     }
+
+    public ChartSeries getPrm() {
+        return prm;
+    }
+
+    public void setPrm(ChartSeries prm) {
+        this.prm = prm;
+    }*/
+
+    public int getTahun_id() {
+        return tahun_id;
+    }
+
+    public void setTahun_id(int tahun_id) {
+        this.tahun_id = tahun_id;
+    }
+
+    public int getBulan_id() {
+        return bulan_id;
+    }
+
+    public void setBulan_id(int bulan_id) {
+        this.bulan_id = bulan_id;
+    }
+
+    public int getPuskesmas_id() {
+        return puskesmas_id;
+    }
+
+    public void setPuskesmas_id(int puskesmas_id) {
+        this.puskesmas_id = puskesmas_id;
+    }
+
+    public PenyakitJkFacade getPenyakitJkFacade() {
+        return penyakitJkFacade;
+    }
+ 
+    public void refreshChart3() {
+        createBarModel();
+    }
+    
     @PostConstruct
     public void init() {
-        createHorizontalBarModels();
+        createBarModel();
     }
     
     public HorizontalBarChartModel getHorizontalBarModel() {
@@ -43,9 +93,6 @@ public class Chart implements Serializable {
         return barModel;
     }
     
-    public void refreshChart3() {
-        createHorizontalBarModel();
-    }
     
     public void refreshChart2() {
         createHorizontalBarModel();
@@ -112,7 +159,15 @@ public class Chart implements Serializable {
         barModel.setAnimate(true);
         
         ChartSeries laki = new ChartSeries();
-        laki.setLabel("Laki - laki");
+        
+        laki.setLabel("Laki - Laki");
+        List<PenyakitJk> dataku = 
+                getPenyakitJkFacade().findByTahunIdPuskesmasIdBulanId(tahun_id, puskesmas_id, bulan_id);
+        
+        for (PenyakitJk H : dataku) {
+            laki.set( "bulan " + H.getPenyakitId() , (int) H.getLaki());
+        }
+        /*laki.setLabel("Laki - laki");
         laki.set("Pilek", 79);
         laki.set("Flu", 101);
         laki.set("Batuk", 81);
@@ -122,10 +177,17 @@ public class Chart implements Serializable {
         laki.set("Panas dalam", 78);
         laki.set("Kejang", 89);
         laki.set("Katarak", 88);
-        laki.set("Panu", 91);
+        laki.set("Panu", 91);*/
  
         ChartSeries prm = new ChartSeries();
         prm.setLabel("Perempuan");
+        List<PenyakitJk> datakup = 
+                getPenyakitJkFacade().findByTahunIdPuskesmasIdBulanId(tahun_id, puskesmas_id, bulan_id);
+        
+        for (PenyakitJk H : datakup) {
+            prm.set( "bulan " + H.getPenyakitId() , (int) H.getPrm());
+        }
+        /*prm.setLabel("Perempuan");
         prm.set("Pilek", 113);
         prm.set("Flu", 99);
         prm.set("Batuk", 106);
@@ -135,7 +197,7 @@ public class Chart implements Serializable {
         prm.set("Panas dalam", 94);
         prm.set("Kejang", 75);
         prm.set("Katarak", 99);
-        prm.set("Panu", 84);
+        prm.set("Panu", 84);*/
        
         barModel.addSeries(laki);
         barModel.addSeries(prm);
