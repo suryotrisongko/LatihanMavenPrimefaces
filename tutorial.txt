@@ -1,0 +1,7 @@
+Ttg EJB dan Session Bean = 
+http://www.javaworld.com/article/2071724/java-web-development/ejb-fundamentals-and-session-beans.html
+
+Ttg Query ke Database pake JPA = 
+https://docs.oracle.com/javaee/7/tutorial/persistence-criteria001.htm
+
+

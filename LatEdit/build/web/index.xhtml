@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>APIK: Aplikasi Pelaporan Informasi Kesehatan, Kota Kediri (prototype v1.0)</title>
+        <script src="http://maps.google.com/maps/api/js?sensor=true|false" type="text/javascript"></script>
+        <style>
+            body {
+                background-color: gold;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:growl id="growl" showDetail="true" />
+
+            <div align="center">
+                <h:graphicImage library="images" name="no-image.png"/>
+                <h1>APIK: Aplikasi Pelaporan Informasi Kesehatan, Kota Kediri (prototype v1.0)</h1>
+                <i>Fitur Utama CHART</i> = Animasi ketika chart ditampilkan, Interaktif (klik, muncul info detail), Responsif (menyesuaikan ukuran layar device).
+                <br/>
+                <i>Fitur Utama MAPS</i> = Marker warna lokasi puskesmas/RS menunjukkan jumlah penyakit, Info detail ketika di klik, Area kecamatan dengan warna menunjukkan jumlah penyakit,
+            </div>
+            <br/>
+            <p:separator />
+            <br/><br/>
+            
+            <!-- diedit oleh bintang setyawan -->
+            <h:panelGrid columns="8" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="bulan" value="" />
+                <p:selectOneMenu id="bulan1" value="#{penyakitView.bulan}" style="width:100px">
+                    <f:selectItem itemLabel="Oktober" itemValue="Oktober" />
+                    <f:selectItem itemLabel="November" itemValue="November" />
+                    <f:selectItem itemLabel="Desember" itemValue="Desember" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="tahun" value="" />
+                <p:selectOneMenu id="tahun1" value="#{penyakitView.tahun}" style="width:50px">
+                    <f:selectItem itemLabel="2015" itemValue="2015" />
+                    <f:selectItem itemLabel="2014" itemValue="2014" />
+                    <f:selectItem itemLabel="2013" itemValue="2013" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="puskesmas" value="" />
+                <p:selectOneMenu id="puskesmas1" value="#{penyakitView.puskesmas}" style="width:150px">
+                    <f:selectItem itemLabel="Semua Puskesmas" itemValue="Semua Puskesmas" />
+                    <f:selectItem itemLabel="Sukorame" itemValue="Sukorame" />
+                    <f:selectItem itemLabel="Ngampel" itemValue="Ngampel" />
+                </p:selectOneMenu>
+                <p:commandButton value="View" id="withIcon7" actionListener="#{penyakitView.refreshChart3}" update="chart3" icon="ui-icon-disk" />
+            </h:panelGrid>
+            
+            <p:chart type="bar" id="chart3" model="#{chart.barModel}" style="height:600px">
+                <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
+            </p:chart>
+            
+           
+            <br/>
+            <p:separator />
+            <br/><br/>
+
+            <h:panelGrid columns="8" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="bulan" value="" />
+                <p:selectOneMenu id="bulan2" value="#{chartView.bulan}" style="width:100px">
+                    <f:selectItem itemLabel="Oktober" itemValue="Oktober" />
+                    <f:selectItem itemLabel="November" itemValue="November" />
+                    <f:selectItem itemLabel="Desember" itemValue="Desember" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="tahun" value="" />
+                <p:selectOneMenu id="tahun2" value="#{chartView.tahun}" style="width:50px">
+                    <f:selectItem itemLabel="2015" itemValue="2015" />
+                    <f:selectItem itemLabel="2014" itemValue="2014" />
+                    <f:selectItem itemLabel="2013" itemValue="2013" />
+                </p:selectOneMenu>
+                
+                <p:outputLabel for="puskesmas" value="" />
+                <p:selectOneMenu id="puskesmas2" value="#{chartView.puskesmas}" style="width:150px">
+                    <f:selectItem itemLabel="Semua Puskesmas" itemValue="Semua Puskesmas" />
+                    <f:selectItem itemLabel="Sukorame" itemValue="Sukorame" />
+                    <f:selectItem itemLabel="Ngampel" itemValue="Ngampel" />
+                </p:selectOneMenu>
+                <p:commandButton value="View" id="withIcon9" actionListener="#{chartView.refreshBarChart2}" update="chart6" icon="ui-icon-disk" />
+            </h:panelGrid>
+            
+            <p:chart type="bar" id="chart6" model="#{chartView.barModel}" style="height:600px">
+                <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
+            </p:chart>
+            <!-- diedit oleh bintang setyawan sampai sini -->
+            <br/>
+            <p:separator />
+            <br/><br/>
+            <br/><br/>
+            
+            <!-- Diedit oleh oryza -->
+            <h:panelGrid columns="8" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="puskesmasLine" value="" />
+                <p:selectOneMenu id="puskesmasLine" value="#{historytotalpasien.puskesmas_id}" style="width:160px">
+                    <f:selectItem itemLabel="Semua Puskesmas" itemValue="1" />
+                    <f:selectItem itemLabel="Sukorame" itemValue="2" />
+                    <f:selectItem itemLabel="Ngampel" itemValue="3" />
+                    <f:selectItem itemLabel="Mrican" itemValue="4" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="tahunLine" value="" />
+                <p:selectOneMenu id="tahunLine" value="#{historytotalpasien.tahun_id}" style="width:50px">
+                    <f:selectItem itemLabel="2015" itemValue="2015" />
+                    <f:selectItem itemLabel="2014" itemValue="2014" />
+                    <f:selectItem itemLabel="2013" itemValue="2013" />
+                </p:selectOneMenu>
+
+                <p:commandButton value="View" id="withIcon4" actionListener="#{historytotalpasien.refreshLineChart1}" update="line1"/>
+            </h:panelGrid>
+            
+            <p:chart id="line1" type="line" model="#{historytotalpasien.lineModel1}" style="height:600px;">
+                <p:ajax event="itemSelect" listener="#{historytotalpasien.itemLineSelect}" update="growl" />
+            </p:chart>
+            <!-- Diedit oleh oryza sampai sini-->
+
+            <br/>
+            <p:separator />
+            <br/><br/>
+
+
+            <h:panelGrid columns="5" style="margin-bottom:10px" cellpadding="5">
+                <p:outputLabel for="bulan" value="" />
+                <p:selectOneMenu id="bulan" value="#{penyakitView.bulan}" style="width:125px">
+                    <f:selectItem itemLabel="Oktober" itemValue="Oktober" />
+                    <f:selectItem itemLabel="November" itemValue="November" />
+                    <f:selectItem itemLabel="Desember" itemValue="Desember" />
+                </p:selectOneMenu>
+
+                <p:outputLabel for="tahun" value="" />
+                <p:selectOneMenu id="tahun" value="#{penyakitView.tahun}" style="width:125px">
+                    <f:selectItem itemLabel="2015" itemValue="2015" />
+                    <f:selectItem itemLabel="2014" itemValue="2014" />
+                    <f:selectItem itemLabel="2013" itemValue="2013" />
+                </p:selectOneMenu>
+
+                <p:commandButton value="View" id="withIcon1" actionListener="#{penyakitView.refreshChart4}" update="chart1" icon="ui-icon-disk" />
+            </h:panelGrid>
+
+            <p:chart id="chart1" type="bar" model="#{penyakitView.horizontalBarModel}" style="height:500px" responsive="true">            
+                <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
+            </p:chart>
+            <br/>
+            <p:separator />
+            <br/><br/>
+
+
+            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+                <p:outputLabel for="puskesmas" value="" />
+                <p:selectOneMenu id="puskesmas" value="#{penyakitView.puskesmas}" style="width:125px">
+                    <f:selectItem itemLabel="Semua Puskesmas" itemValue="Semua Puskesmas" />
+                    <f:selectItem itemLabel="Sukorame" itemValue="Sukorame" />
+                    <f:selectItem itemLabel="Ngampel" itemValue="Ngampel" />
+                </p:selectOneMenu>
+
+                <p:commandButton value="View" id="withIcon2" actionListener="#{penyakitView.refreshChart2}" update="chart2" icon="ui-icon-disk" />
+            </h:panelGrid>
+
+            <p:chart type="bar" id="chart2" model="#{penyakitView.barModel}" style="height:500px" responsive="true">            
+                <p:ajax event="itemSelect" listener="#{penyakitView.itemSelect}" update="growl" />
+            </p:chart>
+            <br/>
+            <p:separator />
+            <br/><br/><br/>
+
+
+            <i>PETA Jumlah Penyakit di Puskesmas/RS. Merah = Jumlah banyak; Kuning = Jumlah sedang; Hijau = Jumlah sedikit.</i>
+            <br/>
+
+            <h:panelGrid columns="4" style="margin-bottom:10px" cellpadding="5">
+
+                <p:selectOneMenu id="penyakitMap" value="#{mapPuskesmasView.penyakit}" style="width:125px">
+                    <f:selectItem itemLabel="Semua Penyakit" itemValue="Semua Penyakit" />
+                    <f:selectItem itemLabel="Batuk" itemValue="Batuk" />
+                    <f:selectItem itemLabel="Pilek" itemValue="Pilek" />
+                </p:selectOneMenu>
+
+                <p:selectOneMenu id="bulanMap" value="#{mapPuskesmasView.bulan}" style="width:125px">
+                    <f:selectItem itemLabel="Oktober" itemValue="Oktober" />
+                    <f:selectItem itemLabel="November" itemValue="November" />
+                    <f:selectItem itemLabel="Desember" itemValue="Desember" />
+                </p:selectOneMenu>
+
+                <p:selectOneMenu id="tahunMap" value="#{mapPuskesmasView.tahun}" style="width:125px">
+                    <f:selectItem itemLabel="2015" itemValue="2015" />
+                    <f:selectItem itemLabel="2014" itemValue="2014" />
+                    <f:selectItem itemLabel="2013" itemValue="2013" />
+                </p:selectOneMenu>
+
+                <p:commandButton value="View" id="withIcon3" actionListener="#{mapPuskesmasView.refreshMap1}" update="gmap1" icon="ui-icon-disk" />
+            </h:panelGrid>
+
+            <p:gmap id="gmap1" center="-7.8424221,112.0161875" zoom="12" type="ROADMAP" model="#{mapPuskesmasView.advancedModel}" style="width:100%;height:500px">
+
+                <p:ajax event="overlaySelect" listener="#{mapPuskesmasView.onMarkerSelect}" />
+
+                <p:gmapInfoWindow id="infoWindow">
+                    <p:outputPanel style="text-align: center; display: block; margin: auto">
+
+                        <p:graphicImage name="/images/#{mapPuskesmasView.marker.data}" height="350" />
+                        <br />
+                        <h:outputText value="#{mapPuskesmasView.marker.title}" />
+
+                    </p:outputPanel>
+                </p:gmapInfoWindow>
+            </p:gmap>
+
+            <!-- Preload for demo -->
+            <p:outputPanel style="display:none">
+                <p:graphicImage name="/images/puskesmas1.png" />
+                <p:graphicImage name="/images/puskesmas2.png" />
+                <p:graphicImage name="/images/puskesmas3.png" />
+            </p:outputPanel>
+            <br/>
+            <p:separator />
+            <br/><br/><br/>
+
+            last updated = 30 November 2015, by Hatma Suryotrisongko, Jurusan Sistem Informasi, Fakultas Teknologi Informasi, Institut Teknologi Sepuluh Nopember
+
+
+        </h:form>
+    </h:body>
+
+</html>

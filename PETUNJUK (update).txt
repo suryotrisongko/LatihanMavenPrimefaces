@@ -1,0 +1,7 @@
+1. buat database latedit di mysql, import file sql
+
+2. buka netbeans, open project LatEdit
+
+3. edit persistence.xml dan Glassfish-resources.xml sesuai setting koneksi ke database anda
+
+4. good luck!
